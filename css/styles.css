@@ -1,0 +1,31 @@
+div {
+    box-sizing: border-box;
+}
+
+#board {
+    width: 450px;
+    height: 450px;
+    margin: 0 auto;
+    
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    border: 3px solid #666666;
+    float: left;
+    font-size: 100px;
+    text-align: center;
+    line-height: 150px;
+    cursor: crosshair;
+}
+
+.button {
+    color: dodgerblue;
+    background-color: black;
+    font-size: 20px;
+    display: block;
+    margin: 0 auto;
+    padding: 6px 30px;
+    cursor: crosshair;
+}
