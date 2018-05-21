@@ -8,13 +8,51 @@ for(i = 0; i <= 63; i++) {
     $board.append(box)
 }
 
-// Need to set battleships to appear on click
+let shipsLeft = 6;
 let $boxes = $('.box')
+let $turn = $('#turn')
+// Places ship in box clicked.
+let clickBoxHandler = function() {
+    $boxes.one('click', function() {
+        $(this).prepend($('<img>',{class:'boat', src:'images/littleboat.png'}))
+        shipsLeft--;
+        console.log(shipsLeft)
+        var $boats = $('.boat')
+        if(shipsLeft === 3) {
+            $boats.hide(1000)
+            turnHandler();
+        } else {
+            if(shipsLeft === 0) {
+                alert('FIGHT!')
+                console.log($boats.length)
+                $boats.hide(600)
+                startGame();
+            }
+        }
+    })
+    
+}
+clickBoxHandler();
+// Controls player turns
+function turnHandler() {
+    alert(`Player 2's turn`)
+    $turn.text('Turn: Player 2')
+    console.log($turn)
+}
 
-$boxes.on('click', function() {
-    $(this).prepend($('<img>',{id:'boat', src:'images/littleboat.png'}))
+// let $boats = $("<img>id='boat', src='images/littleboat.png'</img>");
+// function startGame() {
+//     $board.css('opacity', '$boats', '0');
+// }
+
+$startNew = $('#new-game');
+
+$startNew.on('click', function() {
+    $boxes.html("");
+    shipsLeft = 6;
+    $turn.text('Turn: Player 1')
 })
 
-// let setShips = function() {
-//     $boxes.on('click')
-// }
+// Maybe place 2 images in html file & when 
+// shipsLeft reaches 0 switch to the next image(I could also change
+// text for whose turn at this point)?
