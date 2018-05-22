@@ -23,7 +23,7 @@ div {
     cursor: crosshair;
 }
 
-#new-game {
+button {
     color: dodgerblue;
     background-color: black;
     font-size: 20px;
@@ -31,8 +31,18 @@ div {
     margin: 0 auto;
     padding: 6px 30px;
     cursor: crosshair;
+    border-radius: 10px;
+    border-color: #0000FF;
 }
 
 .boat {
     width: 75px;
+}
+
+section {
+    text-align: right;
+    margin: 0 52px;;
+    font-size: 20px;
+    color: antiquewhite;
+    padding: 5px;
 }
