@@ -1,6 +1,8 @@
 let $board = $('.board');
 let $currentShip = null;
 let $boats;
+let player1 = 3;
+let player2 = 3;
 
 // For loop to create the 64 box playing grid
 for(i = 0; i <= 63; i++) {
@@ -9,16 +11,6 @@ for(i = 0; i <= 63; i++) {
     $board.hide().append(box)
 }
 
-// Shows grid when clicking start
-let $startBtn = $('.start');
-$startBtn.on('click', function() {
-    $board.show(500);
-    setTimeout(function() {
-        alert('Player 1 set your boats!');
-    }, 600);
-    $(this).off();
-})
-
 let shipsLeft = 6;
 let $boxes = $('.box')
 let $turn = $('#turn')
@@ -26,19 +18,26 @@ let $turn = $('#turn')
 // Places ship in box clicked.
 let clickBoxHandler = function() {
     $boxes.on('click', function() {
-        $(this).prepend($('<img>',{class:'boat', src:'images/littleboat.png'}))
-        shipsLeft--;
+        let currentPlayer = "Jesse"
+        let playerOneBoat = "images/littleboat.png"
+        let playerTwoBoat = "images/smallboat.png"
+        let image = `<img src=${playerOneBoat} class="boat" data-owner"playerOne">`
+        let image2 = `<img src=${playerTwoBoat} class="boat" data-owner"playerTwo">`
         $boats = $('.boat')
+        // $(this).prepend($('<img>',{class:'boat', src:'images/littleboat.png'}))
+        $(this).prepend(image)
+        shipsLeft--;
         if(shipsLeft === 3) {
-            $boats.hide(1000)
+            $boats.hide(600)
         } else {
             if(shipsLeft === 0) {
                 $boats.hide(600)
                 $boxes.off('click')
                 $turn.text('Turn: Player 1')
+                boatHit();
             }
         }
-        $(this).off('click')
+        // $(this).off('click')
     })
 }
 clickBoxHandler();
@@ -47,9 +46,9 @@ clickBoxHandler();
 $startNew = $('#new-game');
 $startNew.on('click', function() {
     $boxes.html("");
-    clickBoxHandler();
     shipsLeft = 6;
     $turn.text('Turn: Player 1')
+    clickBoxHandler();
 })
 
 // Shows boat when boat is clicked
@@ -61,7 +60,7 @@ function boatHit() {
     });
 }
 
-//* function startGame() {
+// function startGame() {
 //     let $startButton = $('#start')
 //     $startButton.on('click', function() {
 //         alert('FIGHT!')
@@ -78,6 +77,16 @@ function boatHit() {
 //         }
 //     })
 // };
+
+ // // Shows grid when clicking start
+let $startBtn = $('.start');
+$startBtn.on('click', function() {
+    $board.show(500);
+    setTimeout(function() {
+        alert('Player 1 set your boats!');
+    }, 600);
+    $(this).off();
+})
 
 // Maybe place 2 images in html file & when 
 // shipsLeft reaches 0 switch to the next image(I could also change
