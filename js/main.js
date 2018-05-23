@@ -31,6 +31,7 @@ let clickBoxHandler = function() {
         $boats = $('.boat')
         if(shipsLeft === 3) {
             $boats.hide(1000)
+            $turn.text('Turn: Player 2')
         } else {
             if(shipsLeft === 0) {
                 $boats.hide(600)
