@@ -11,36 +11,13 @@ for(i = 0; i <= 63; i++) {
     $board.hide().append(box)
 }
 
-let shipsLeft = 6;
+let shipsLeftOne = 3;
+let shipsLeftTwo = 3;
 let $boxes = $('.box')
 let $turn = $('#turn')
 
 // Places ship in box clicked.
-let clickBoxHandler = function() {
-    $boxes.on('click', function() {
-        let currentPlayer = "Jesse"
-        let playerOneBoat = "images/littleboat.png"
-        let playerTwoBoat = "images/smallboat.png"
-        let image = `<img src=${playerOneBoat} class="boat" data-owner"playerOne">`
-        let image2 = `<img src=${playerTwoBoat} class="boat" data-owner"playerTwo">`
-        $boats = $('.boat')
-        // $(this).prepend($('<img>',{class:'boat', src:'images/littleboat.png'}))
-        $(this).prepend(image)
-        shipsLeft--;
-        if(shipsLeft === 3) {
-            $boats.hide(600)
-        } else {
-            if(shipsLeft === 0) {
-                $boats.hide(600)
-                $boxes.off('click')
-                $turn.text('Turn: Player 1')
-                boatHit();
-            }
-        }
-        // $(this).off('click')
-    })
-}
-clickBoxHandler();
+
 
 // Clears board to begin a new game when clicking "New Game Button"
 $startNew = $('#new-game');
@@ -52,20 +29,17 @@ $startNew.on('click', function() {
 })
 
 // Shows boat when boat is clicked
-function boatHit() {
-    $boxes.on( "click", function( event ) {
-        event.preventDefault();
-        $(this).find('img').show(500);
-        console.log("Image Hit!")
-    });
-}
-
-// function startGame() {
-//     let $startButton = $('#start')
-//     $startButton.on('click', function() {
-//         alert('FIGHT!')
-//     })
+// function boatHit() {
+//     $boxes.on( "click", function( event ) {
+//         event.preventDefault();
+//         $(this).find('img').show(500);
+//         console.log("Image Hit!")
+//     });
 // }
+
+function startBattle() {
+    $boats.hide();
+}
 
 //* Controls player turns
 // function turnHandler() {
@@ -91,3 +65,46 @@ $startBtn.on('click', function() {
 // Maybe place 2 images in html file & when 
 // shipsLeft reaches 0 switch to the next image(I could also change
 // text for whose turn at this point)?
+
+// let clickBoxHandler = function() {
+//     $boxes.on('click', function() {
+//         let currentPlayer = "Jesse"
+//         let playerOneBoat = "images/littleboat.png"
+//         let playerTwoBoat = "images/smallboat.png"
+//         let image = `<img src=${playerOneBoat} class="boat" data-owner"playerOne">`
+//         let image2 = `<img src=${playerTwoBoat} class="boat" data-owner"playerTwo">`
+//         $boats = $('.boat')
+//         // $(this).prepend($('<img>',{class:'boat', src:'images/littleboat.png'}))
+//         if(shipsLeftOne !== 0) {
+//             shipsLeftOne--;
+//             $(this).prepend(image)
+//             // $boats.hide(600)
+//         } else if (shipsLeftOne === 0) {
+//                 // shipsLeftTwo--;
+//                 // $(this).prepend(image2)
+//                 $(this).off('click')
+//                 $boats.hide(600)
+//         } else if (shipsLeftTwo === 0) {
+//             console.log('hi')
+//         }
+//                 // boatHit();
+//              // <----- End if else statement -----> //
+        
+//         $(this).off('click')
+//     })
+// }
+// clickBoxHandler();
+
+function clickBoxHandler() {
+    let playerOneBoat = "images/littleboat.png";
+    let playerTwoBoat = "images/smallboat.png";
+    let littleBoat = `<img src=${playerOneBoat} class="boat" data-owner"playerOne">`;
+    let smallBoat = `<img src=${playerTwoBoat} class="boat" data-owner"playerTwo">`;
+    $boats = $('.boat');
+    if(shipsLeftOne !== 0) {
+        $boxes.on('click', function() {
+            $(this).prepend(littleBoat);
+            shipsLeftOne--;
+        }) 
+    }
+}
