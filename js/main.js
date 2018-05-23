@@ -19,7 +19,7 @@ $startBtn.on('click', function() {
     $(this).off();
 })
 
-let shipsLeft = 6;
+let playerOneShipsLeft = 6;
 let $boxes = $('.box')
 let $turn = $('#turn')
 
@@ -27,7 +27,7 @@ let $turn = $('#turn')
 let clickBoxHandler = function() {
     $boxes.on('click', function() {
         $(this).prepend($('<img>',{class:'boat', src:'images/littleboat.png'}))
-        shipsLeft--;
+        playerOneShipsLeft--;
         $boats = $('.boat')
         if(shipsLeft === 3) {
             $boats.hide(1000)
