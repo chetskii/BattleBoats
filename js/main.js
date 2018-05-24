@@ -93,8 +93,8 @@ function boatHit() {
         $imgWithin.show(500);
         $pointsPlayerOne.text(`Player 1: ${player1.score}`);
         $pointsPlayerTwo.text(`Player 2: ${player2.score}`);
+        matchWinner();
     });
-    matchWinner();
 }
  // // Shows grid when clicking start
 let $startBtn = $('.start');
@@ -119,8 +119,10 @@ let boatSettingHandler = function() {
 }
 
 function matchWinner() {
-    if(currentPlayer.score === 3) {
-        alert(`${currentPlayer.name} IS VICTORIOUS!`)
+    if(player1.score === 3) {
+        alert(`${player1.name} IS VICTORIOUS!!`)
+    } else if(player2.score === 3) {
+        alert(`${player2.name} IS VICTORIOUS!!`)
     }
 }
 // boatSettingHandler();
