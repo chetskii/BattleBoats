@@ -136,3 +136,17 @@ function matchWinner() {
         $boxes.off('click')
     }
 }
+
+// $resetButton = $('#reset');
+
+// $resetButton.on('click', resetGlobalVariables)
+
+// // Should reset variables to setup new game
+// function resetGlobalVariables() {
+//     player1.score = 0;
+//     player2.score = 0;
+//     player1.boatsPlayed = 0;
+//     player2.boatsPlayed = 0;
+//     currentPlayer = player1;
+//     $boxes.empty();
+// }

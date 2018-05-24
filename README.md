@@ -44,3 +44,4 @@ Controls for BattleBoats are easy. Players will simply use their mouse/cursor to
 
 - Biggest hurdle - Figuring out how to dynamically involve 2 players in game.
 - Hiding ships right AFTER placing them.
+- Couldn't get reset button to work properly
