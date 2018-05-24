@@ -50,3 +50,16 @@ section {
     color: antiquewhite;
     padding: 5px;
 }
+
+h1 {
+    text-align: center;
+    color: antiquewhite;
+    font-weight: bolder;
+    font-size: 64px;
+}
+
+a {
+    text-decoration: none;
+    cursor: crosshair;
+    color: dodgerblue;
+}

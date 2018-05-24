@@ -1,0 +1,30 @@
+body {
+    background-color: #0000FF;
+}
+
+h2 {
+    text-align: center;
+}
+
+button {
+    color: dodgerblue;
+    background-color: black;
+    font-size: 20px;
+    display: block;
+    margin: 0 auto;
+    padding: 6px 30px;
+    cursor: crosshair;
+    border-radius: 10px;
+    border-color: #0000FF;
+}
+
+a {
+    text-decoration: none;
+    color: dodgerblue;
+    cursor: crosshair;
+}
+
+section {
+    font-size: 18px;
+    color: antiquewhite;
+}
