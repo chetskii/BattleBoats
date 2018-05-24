@@ -1,6 +1,58 @@
 let $board = $('.board');
-let $currentShip = null;
-let $boats;
+let $boats = $('.boat');
+
+let player1 = {
+    name: "Player 1",
+    score: 0,
+    boatsPlayed: 0,
+    boatImageName: "littleboat",
+    boatClass: "boatOne"
+};
+let player2 = {
+    name: "Player 2",
+    score: 0,
+    boatsPlayed: 0,
+    boatImageName: "smallboat",
+    boatClass: "boatTwo"
+};
+
+player1.boatImage = `<img src="images/${player1.boatImageName}.png" class="${player1.boatClass}" data-owner="${player1.name}">`
+player2.boatImage = `<img src="images/${player2.boatImageName}.png" class="${player2.boatClass}" data-owner="${player2.name}">`
+
+let currentPlayer = player1
+
+// Switches players turns during boat setup
+function switchBoatSetupTurns() {
+    $(`.${currentPlayer.boatClass}`).fadeOut(500)
+    if(currentPlayer === player1) {
+        currentPlayer = player2
+        $turn.text(`Turn: ${currentPlayer.name}`)
+        // This line gives the images time to disappear BEFORE the alert can interupt.
+        setTimeout(function() {
+            alert('Player 2 set your boats!');
+        }, 500);
+    } else {
+        // Remove event listener for setting up boats
+        $boxes.off()
+        // start game
+        setTimeout(function() {
+            alert("BEGIN!");
+        }, 500);
+        currentPlayer = player1
+        $turn.text(`Turn: ${currentPlayer.name}`)
+        // Activate game clicks
+        boatHit();
+    }
+}
+
+// Switches player turns during actual battle
+function switchAttackingTurns() {
+    if(currentPlayer === player1) {
+        currentPlayer = player2
+    } else {
+        currentPlayer = player1
+    }
+}
 
 // For loop to create the 64 box playing grid
 for(i = 0; i <= 63; i++) {
@@ -9,77 +61,66 @@ for(i = 0; i <= 63; i++) {
     $board.hide().append(box)
 }
 
-// Shows grid when clicking start
-let $startBtn = $('.start');
-$startBtn.on('click', function() {
-    $board.show(500);
-    setTimeout(function() {
-        alert('Player 1 set your boats!');
-    }, 600);
-    $(this).off();
-})
-
-let playerOneShipsLeft = 6;
+const maxShips = 3
 let $boxes = $('.box')
 let $turn = $('#turn')
-
-// Places ship in box clicked.
-let clickBoxHandler = function() {
-    $boxes.on('click', function() {
-        $(this).prepend($('<img>',{class:'boat', src:'images/littleboat.png'}))
-        playerOneShipsLeft--;
-        $boats = $('.boat')
-        if(shipsLeft === 3) {
-            $boats.hide(1000)
-            $turn.text('Turn: Player 2')
-        } else {
-            if(shipsLeft === 0) {
-                $boats.hide(600)
-                $boxes.off('click')
-                $turn.text('Turn: Player 1')
-            }
-        }
-        $(this).off('click')
-    })
-}
-clickBoxHandler();
-
-// Clears board to begin a new game when clicking "New Game Button"
-$startNew = $('#new-game');
-$startNew.on('click', function() {
-    $boxes.html("");
-    clickBoxHandler();
-    shipsLeft = 6;
-    $turn.text('Turn: Player 1')
-})
+let $pointsPlayerOne = $('.points-playerOne')
+let $pointsPlayerTwo = $('.points-playerTwo')
 
 // Shows boat when boat is clicked
 function boatHit() {
     $boxes.on( "click", function( event ) {
         event.preventDefault();
-        $(this).find('img').show(500);
-        console.log("Image Hit!")
+        var $imgWithin = $(this).find('img')
+        // if img within has data-owner belonging to other player, increase currentPlayer.score
+        if($imgWithin.length && $imgWithin.attr('data-owner') !== currentPlayer.name) {
+            currentPlayer.score ++
+            switchAttackingTurns();
+            $turn.text(`Turn: ${currentPlayer.name}`)
+            alert('Nice hit!!')
+        // if img within has data-owner belonging to currentPlayer, ??decrease currentPlayer.score?? & switch turn
+        } else if($imgWithin.attr('data-owner') === currentPlayer.name) {
+            // currentPlayer.score --
+            switchAttackingTurns();
+            $turn.text(`Turn: ${currentPlayer.name}`)
+            alert('That is your own ship!')
+        // if no img alert miss and switch turn
+        } else {
+            switchAttackingTurns();
+            $turn.text(`Turn: ${currentPlayer.name}`)
+            alert('Miss!')
+        }
+        $imgWithin.show(500);
+        $pointsPlayerOne.text(`Player 1: ${player1.score}`);
+        $pointsPlayerTwo.text(`Player 2: ${player2.score}`);
     });
+    matchWinner();
+}
+ // // Shows grid when clicking start
+let $startBtn = $('.start');
+$startBtn.on('click', function() {
+    $board.show(500);
+    setTimeout(function() {
+        alert('Player 1 set your boats!');
+    }, 501);
+    $(this).off();
+    boatSettingHandler();
+})
+
+// Adds boats to grid when clicking boxes; Switches to next player after 3 boats are placed.
+let boatSettingHandler = function() {
+    $boxes.one('click', function() {
+        $(this).prepend(currentPlayer.boatImage)
+        currentPlayer.boatsPlayed ++
+        if(currentPlayer.boatsPlayed >= maxShips) {
+            switchBoatSetupTurns();
+        }
+    })
 }
 
-//* function startGame() {
-//     let $startButton = $('#start')
-//     $startButton.on('click', function() {
-//         alert('FIGHT!')
-//     })
-// }
-
-//* Controls player turns
-// function turnHandler() {
-//     $(this).on('click', function() {
-//         if($turn.text() === 'Turn: Player 1') {
-//             $turn.text('Turn: Player 2')
-//         } else {
-//             $turn.text('Turn: Player 1')
-//         }
-//     })
-// };
-
-// Maybe place 2 images in html file & when 
-// shipsLeft reaches 0 switch to the next image(I could also change
-// text for whose turn at this point)?
+function matchWinner() {
+    if(currentPlayer.score === 3) {
+        alert(`${currentPlayer.name} IS VICTORIOUS!`)
+    }
+}
+// boatSettingHandler();

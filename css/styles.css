@@ -35,7 +35,11 @@ button {
     border-color: #0000FF;
 }
 
-.boat {
+.boatOne {
+    width: 75px;
+}
+
+.boatTwo {
     width: 75px;
 }
 
