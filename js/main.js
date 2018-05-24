@@ -99,10 +99,11 @@ function boatHit() {
         matchWinner();
     });
 }
- // // Shows grid when clicking "Start" button
+// Shows grid when clicking "Start" button
 let $startBtn = $('.start');
 $startBtn.on('click', function() {
     $board.show(500);
+    // Used time out to hold off on the alert so "board" could fully show before alerting
     setTimeout(function() {
         alert('Player 1 set your boats!');
     }, 501);
@@ -121,7 +122,7 @@ let boatSettingHandler = function() {
     })
 }
 
-// Alerts players who wins -
+// Alerts players who wins - Deactivates the grid once winner is announced
 function matchWinner() {
     if(player1.score === 3) {
         alert(`${player1.name} IS VICTORIOUS!!`)
@@ -131,4 +132,3 @@ function matchWinner() {
         $boxes.off('click')
     }
 }
-// boatSettingHandler();
