@@ -67,18 +67,19 @@ let $turn = $('#turn')
 let $pointsPlayerOne = $('.points-playerOne')
 let $pointsPlayerTwo = $('.points-playerTwo')
 
-// Shows boat when boat is clicked
+// Shows boat when boat is clicked & adds points to player scores
 function boatHit() {
     $boxes.on( "click", function( event ) {
         event.preventDefault();
         var $imgWithin = $(this).find('img')
-        // if img within has data-owner belonging to other player, increase currentPlayer.score
+        // if img within has data-owner belonging to other player, increase currentPlayer.score & switch turn
         if($imgWithin.length && $imgWithin.attr('data-owner') !== currentPlayer.name) {
             currentPlayer.score ++
             switchAttackingTurns();
             $turn.text(`Turn: ${currentPlayer.name}`)
+            $imgWithin.show(500);
             alert('Nice hit!!')
-        // if img within has data-owner belonging to currentPlayer, ??decrease currentPlayer.score?? & switch turn
+        // if img within has data-owner belonging to currentPlayer, DO NOT SHOW BOAT & switch turn
         } else if($imgWithin.attr('data-owner') === currentPlayer.name) {
             // currentPlayer.score --
             switchAttackingTurns();
@@ -88,15 +89,16 @@ function boatHit() {
         } else {
             switchAttackingTurns();
             $turn.text(`Turn: ${currentPlayer.name}`)
+            $imgWithin.show(500);
             alert('Miss!')
         }
-        $imgWithin.show(500);
+        // $imgWithin.show(500);
         $pointsPlayerOne.text(`Player 1: ${player1.score}`);
         $pointsPlayerTwo.text(`Player 2: ${player2.score}`);
         matchWinner();
     });
 }
- // // Shows grid when clicking start
+ // // Shows grid when clicking "Start" button
 let $startBtn = $('.start');
 $startBtn.on('click', function() {
     $board.show(500);
@@ -118,6 +120,7 @@ let boatSettingHandler = function() {
     })
 }
 
+// Alerts players who wins -
 function matchWinner() {
     if(player1.score === 3) {
         alert(`${player1.name} IS VICTORIOUS!!`)
