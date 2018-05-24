@@ -78,6 +78,7 @@ function boatHit() {
             switchAttackingTurns();
             $turn.text(`Turn: ${currentPlayer.name}`)
             $imgWithin.show(500);
+            $(this).off('click')
             alert('Nice hit!!')
         // if img within has data-owner belonging to currentPlayer, DO NOT SHOW BOAT & switch turn
         } else if($imgWithin.attr('data-owner') === currentPlayer.name) {
@@ -124,8 +125,10 @@ let boatSettingHandler = function() {
 function matchWinner() {
     if(player1.score === 3) {
         alert(`${player1.name} IS VICTORIOUS!!`)
+        $boxes.off('click')
     } else if(player2.score === 3) {
         alert(`${player2.name} IS VICTORIOUS!!`)
+        $boxes.off('click')
     }
 }
 // boatSettingHandler();
