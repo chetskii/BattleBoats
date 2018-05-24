@@ -2,8 +2,13 @@ body {
     background-color: darkblue;
 }
 
+h1 {
+    color: antiquewhite;
+}
+
 h2 {
     text-align: center;
+    color: dodgerblue;
 }
 
 button {
@@ -15,7 +20,8 @@ button {
     padding: 6px 30px;
     cursor: crosshair;
     border-radius: 10px;
-    border-color: #0000FF;
+    border-color: dodgerblue;
+    border-width: 2px;
 }
 
 a {

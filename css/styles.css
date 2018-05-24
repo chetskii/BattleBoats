@@ -32,7 +32,8 @@ button {
     padding: 6px 30px;
     cursor: crosshair;
     border-radius: 10px;
-    border-color: #0000FF;
+    border-color: dodgerblue;
+    border-width: 2px;
 }
 
 .boatOne {
@@ -62,4 +63,8 @@ a {
     text-decoration: none;
     cursor: crosshair;
     color: dodgerblue;
+}
+
+.start {
+    margin-bottom: 5px;
 }

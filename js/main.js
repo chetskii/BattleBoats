@@ -21,6 +21,7 @@ player2.boatImage = `<img src="images/${player2.boatImageName}.png" class="${pla
 
 let currentPlayer = player1
 
+// Hides scores and turn until "Start" button is clicked
 let $gameInfo = $('.hide')
 $gameInfo.hide()
 
