@@ -21,6 +21,9 @@ player2.boatImage = `<img src="images/${player2.boatImageName}.png" class="${pla
 
 let currentPlayer = player1
 
+let $gameInfo = $('.hide')
+$gameInfo.hide()
+
 // Switches players turns during boat setup
 function switchBoatSetupTurns() {
     $(`.${currentPlayer.boatClass}`).fadeOut(500)
@@ -102,6 +105,7 @@ function boatHit() {
 // Shows grid when clicking "Start" button
 let $startBtn = $('.start');
 $startBtn.on('click', function() {
+    $gameInfo.show(500)
     $board.show(500);
     // Used time out to hold off on the alert so "board" could fully show before alerting
     setTimeout(function() {
