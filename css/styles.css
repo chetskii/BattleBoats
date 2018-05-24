@@ -15,7 +15,7 @@ div {
 .box {
     width: 12.5%;
     height: 12.5%;
-    border: 3px solid #000000;
+    border: 3px solid antiquewhite;
     float: left;
     font-size: 100px;
     text-align: center;

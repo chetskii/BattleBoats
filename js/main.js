@@ -86,7 +86,6 @@ function boatHit() {
             alert('Nice hit!!')
         // if img within has data-owner belonging to currentPlayer, DO NOT SHOW BOAT & switch turn
         } else if($imgWithin.attr('data-owner') === currentPlayer.name) {
-            // currentPlayer.score --
             switchAttackingTurns();
             $turn.text(`Turn: ${currentPlayer.name}`)
             alert('That is your own ship!')
@@ -106,12 +105,12 @@ function boatHit() {
 // Shows grid when clicking "Start" button
 let $startBtn = $('.start');
 $startBtn.on('click', function() {
-    $gameInfo.show(500)
-    $board.show(500);
+    $gameInfo.fadeIn(2000)
+    $board.fadeIn(1000);
     // Used time out to hold off on the alert so "board" could fully show before alerting
     setTimeout(function() {
         alert('Player 1 set your boats!');
-    }, 501);
+    }, 2050);
     $(this).off();
     boatSettingHandler();
 })
