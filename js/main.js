@@ -105,12 +105,12 @@ function boatHit() {
 // Shows grid when clicking "Start" button
 let $startBtn = $('.start');
 $startBtn.on('click', function() {
-    $gameInfo.fadeIn(2000)
+    $gameInfo.fadeIn(1000)
     $board.fadeIn(1000);
     // Used time out to hold off on the alert so "board" could fully show before alerting
     setTimeout(function() {
         alert('Player 1 set your boats!');
-    }, 2050);
+    }, 1000);
     $(this).off();
     boatSettingHandler();
 })
@@ -138,10 +138,12 @@ function matchWinner() {
 }
 
 // $resetButton = $('#reset');
+// $resetButton.on('click', function() {
+//     resetGlobalVariables(); 
+//     boatSettingHandler();
+// })
 
-// $resetButton.on('click', resetGlobalVariables)
-
-// // Should reset variables to setup new game
+// // // // Should reset variables to setup new game
 // function resetGlobalVariables() {
 //     player1.score = 0;
 //     player2.score = 0;
@@ -149,4 +151,6 @@ function matchWinner() {
 //     player2.boatsPlayed = 0;
 //     currentPlayer = player1;
 //     $boxes.empty();
+//     $board.hide();
+//     startBtn.on('click', )
 // }
