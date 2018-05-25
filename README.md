@@ -30,8 +30,8 @@ Controls for BattleBoats are easy. Players will simply use their mouse/cursor to
 
 ## Built with
 
-- JavaScript - Programming language used
-- jQuery - JavaScript Library
+- JavaScript - Programming language used - Made the following possible: Create the game-grid, all clickable objects, turns, score, & winner.
+- jQuery - JavaScript Library (See above)
 - HTML - Markup Language
 - CSS - Style Sheet Language
 
